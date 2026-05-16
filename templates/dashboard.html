@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
+        
+        #dashboard-content { display: none; }
+
+        .header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .header h2 { margin: 0; color: #333; display: flex; align-items: center; gap: 10px; }
+        
+        .btn-group { display: flex; gap: 10px; }
+        .btn { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; font-size: 14px; }
+        .btn-logout { background: #e74c3c; color: white; }
+        .btn-logout:hover { background: #c0392b; }
+        .btn-chart { background: #4b7bec; color: white; }
+        .btn-chart:hover { background: #3867d6; }
+
+        /* Tabs */
+        .tabs { 
+            display: flex; gap: 10px; background: white; padding: 15px 25px; 
+            border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px;
+        }
+        .tab-btn {
+            padding: 10px 20px; border: none; background: transparent; 
+            cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; transition: 0.3s;
+        }
+        .tab-btn.active { border-bottom-color: #4b7bec; color: #4b7bec; }
+        .tab-btn:hover { color: #4b7bec; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .table-container { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
+        th { background: #f8f9fa; color: #555; font-weight: 600; }
+        tr:hover { background: #f1f1f1; }
+        
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .badge-normal { background: #d4edda; color: #155724; }
+        .badge-fallback { background: #f8d7da; color: #721c24; }
+        .badge-helpful { background: #d4edda; color: #155724; }
+        .badge-not-helpful { background: #f8d7da; color: #721c24; }
+
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #4b7bec, #a5b9ff);
+            display: flex; justify-content: center; align-items: center; z-index: 2000;
+        }
+        .login-box {
+            background: white; padding: 40px; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%; max-width: 350px; text-align: center;
+        }
+        .login-box h2 { color: #333; margin-bottom: 20px; }
+        .login-input {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            border: 2px solid #eee; border-radius: 8px; font-size: 16px; outline: none; box-sizing: border-box; transition: 0.3s;
+        }
+        .login-input:focus { border-color: #4b7bec; }
+        .login-btn {
+            width: 100%; padding: 12px; background: #4b7bec; color: white;
+            border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .login-btn:hover { background: #3867d6; transform: translateY(-2px); }
+        .error-msg { color: #e74c3c; font-size: 13px; margin-top: 10px; display: none; }
+
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background-color: #fefefe; margin: 5% auto; padding: 20px;
+            border: 1px solid #888; width: 90%; max-width: 600px;
+            border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover { color: black; }
+        canvas { max-height: 400px; }
+
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white; padding: 20px; border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;
+        }
+        .stat-card h3 { margin: 0; color: #4b7bec; font-size: 32px; }
+        .stat-card p { margin: 10px 0 0; color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2>Admin Login</h2>
+            <p style="color:#777; font-size: 14px; margin-bottom: 20px;">Enter your secure password to access dashboard.</p>
+            <input type="password" id="admin-pass" class="login-input" placeholder="Password" onkeypress="handleEnter(event)">
+            <button onclick="attemptLogin()" class="login-btn">Access Dashboard</button>
+            <p id="login-error" class="error-msg">Incorrect Password!</p>
+        </div>
+    </div>
+
+    <div id="dashboard-content">
+        <div class="header">
+            <h2>Bot Admin Dashboard</h2>
+            <div class="btn-group">
+                <button onclick="openChart()" class="btn btn-chart">Analytics</button>
+                <button onclick="logout()" class="btn btn-logout">Logout</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="total-chats">0</h3>
+                <p>Total Conversations</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-feedback">0</h3>
+                <p>Feedback Received</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-leads">0</h3>
+                <p>Leads Captured</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-appointments">0</h3>
+                <p>Appointments Booked</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('logs')">Conversations</button>
+            <button class="tab-btn" onclick="switchTab('feedback')">Feedback</button>
+            <button class="tab-btn" onclick="switchTab('leads')">Leads</button>
+            <button class="tab-btn" onclick="switchTab('appointments')">Appointments</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div id="logs-tab" class="tab-content active">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>User Message</th>
+                            <th>Intent</th>
+                            <th>Confidence</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="log-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="feedback-tab" class="tab-content">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>User Question</th>
+                            <th>Bot Answer</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedback-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="leads-tab" class="tab-content">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="appointments-tab" class="tab-content">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking Time</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Visit Date</th>
+                            <th>Time Slot</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointments-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="chartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChart()">&times;</span>
+            <h2 style="text-align: center; color: #4b7bec;">Question Distribution</h2>
+            <canvas id="intentChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let allLogs = []; 
+        let allFeedback = [];
+        let allLeads = [];
+        let allAppointments = [];
+        let currentPassword = "";
+
+        function handleEnter(e) {
+            if (e.key === "Enter") attemptLogin();
+        }
+
+        async function attemptLogin() {
+            const passwordInput = document.getElementById("admin-pass");
+            const errorMsg = document.getElementById("login-error");
+            const overlay = document.getElementById("login-overlay");
+            const content = document.getElementById("dashboard-content");
+            const password = passwordInput.value;
+
+            try {
+                const res = await fetch(`/api/logs?password=${password}`);
+                
+                if (res.status === 403) {
+                    errorMsg.style.display = "block";
+                    passwordInput.style.borderColor = "#e74c3c";
+                    return;
+                }
+
+                currentPassword = password;
+                const data = await res.json();
+                allLogs = data;
+                
+                overlay.style.display = "none";
+                content.style.display = "block";
+                
+                await loadAllData();
+
+            } catch (err) {
+                console.error(err);
+                alert("Server error. Is python app.py running?");
+            }
+        }
+
+        async function loadAllData() {
+            // Load logs
+            const logsRes = await fetch(`/api/logs?password=${currentPassword}`);
+            allLogs = await logsRes.json();
+            renderLogs(allLogs);
+
+            // Load feedback
+            try {
+                const feedbackRes = await fetch(`/api/feedback?password=${currentPassword}`);
+                allFeedback = await feedbackRes.json();
+                renderFeedback(allFeedback);
+            } catch(e) { allFeedback = []; }
+
+            // Load leads
+            try {
+                const leadsRes = await fetch(`/api/leads?password=${currentPassword}`);
+                allLeads = await leadsRes.json();
+                renderLeads(allLeads);
+            } catch(e) { allLeads = []; }
+
+            // Load appointments
+            try {
+                const appointmentsRes = await fetch(`/api/appointments?password=${currentPassword}`);
+                allAppointments = await appointmentsRes.json();
+                renderAppointments(allAppointments);
+            } catch(e) { allAppointments = []; }
+
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('total-chats').textContent = allLogs.length;
+            document.getElementById('total-feedback').textContent = allFeedback.length;
+            document.getElementById('total-leads').textContent = allLeads.length;
+            document.getElementById('total-appointments').textContent = allAppointments.length;
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        function renderLogs(data) {
+            const tbody = document.getElementById("log-table-body");
+            tbody.innerHTML = "";
+
+            if(data.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding:20px;'>No logs yet.</td></tr>";
+                return;
+            }
+
+            data.slice().reverse().forEach(row => {
+                const [time, msg, intent, conf, status] = row;
+                const badgeClass = status === "fallback" ? "badge-fallback" : "badge-normal";
+                const dateObj = new Date(time);
+                const displayTime = dateObj.toLocaleTimeString() + " <br><small>" + dateObj.toLocaleDateString() + "</small>";
+
+                // FIX: Parse confidence properly - handle both "97%" string and numeric values
+                let confValue = 0;
+                if (typeof conf === 'string') {
+                    // Remove % sign and parse as number
+                    confValue = parseFloat(conf.replace('%', '')) / 100;
+                } else if (typeof conf === 'number') {
+                    // If already a number between 0-1, use as is
+                    // If number > 1, assume it's percentage and divide by 100
+                    confValue = conf > 1 ? conf / 100 : conf;
+                }
+
+                // Ensure confValue is valid
+                if (isNaN(confValue)) confValue = 0;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${displayTime}</td>
+                    <td>${msg}</td>
+                    <td><strong>${intent}</strong></td>
+                    <td>
+                        <div style="background:#e9ecef; border-radius:4px; width: 100px; height: 6px; overflow:hidden;">
+                            <div style="background:${status === 'fallback' ? '#e74c3c' : '#2ecc71'}; width:${confValue * 100}%; height:100%;"></div>
+                        </div>
+                        <small>${Math.round(confValue * 100)}%</small>
+                    </td>
+                    <td><span class="badge ${badgeClass}">${status.toUpperCase()}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderFeedback(data) {
+            const tbody = document.getElementById("feedback-table-body");
+            tbody.innerHTML = "";
+
+            if(data.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px;'>No feedback yet.</td></tr>";
+                return;
+            }
+
+            data.slice().reverse().forEach(row => {
+                const [time, userMsg, botAnswer, feedback] = row;
+                const badgeClass = feedback === "helpful" ? "badge-helpful" : "badge-not-helpful";
+                const icon = feedback === "helpful" ? "👍" : "👎";
+                const dateObj = new Date(time);
+                const displayTime = dateObj.toLocaleTimeString() + " <br><small>" + dateObj.toLocaleDateString() + "</small>";
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${displayTime}</td>
+                    <td>${userMsg}</td>
+                    <td>${botAnswer}</td>
+                    <td><span class="badge ${badgeClass}">${icon} ${feedback.toUpperCase()}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderLeads(data) {
+            const tbody = document.getElementById("leads-table-body");
+            tbody.innerHTML = "";
+
+            if(data.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px;'>No leads yet.</td></tr>";
+                return;
+            }
+
+            data.slice().reverse().forEach(row => {
+                const [time, name, phone, course] = row;
+                const dateObj = new Date(time);
+                const displayTime = dateObj.toLocaleTimeString() + " <br><small>" + dateObj.toLocaleDateString() + "</small>";
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${displayTime}</td>
+                    <td><strong>${name}</strong></td>
+                    <td>${phone}</td>
+                    <td>${course}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderAppointments(data) {
+            const tbody = document.getElementById("appointments-table-body");
+            tbody.innerHTML = "";
+
+            if(data.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding:20px;'>No appointments yet.</td></tr>";
+                return;
+            }
+
+            data.slice().reverse().forEach(row => {
+                const [time, name, phone, date, timeSlot] = row;
+                const dateObj = new Date(time);
+                const displayTime = dateObj.toLocaleTimeString() + " <br><small>" + dateObj.toLocaleDateString() + "</small>";
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${displayTime}</td>
+                    <td><strong>${name}</strong></td>
+                    <td>${phone}</td>
+                    <td>${date}</td>
+                    <td>${timeSlot}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        let myChart = null;
+
+        function openChart() {
+            document.getElementById("chartModal").style.display = "block";
+            renderChart();
+        }
+
+        function closeChart() {
+            document.getElementById("chartModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("chartModal");
+            if (event.target == modal) modal.style.display = "none";
+        }
+
+        function renderChart() {
+            const intentCounts = {};
+            let totalCount = 0;
+
+            allLogs.forEach(row => {
+                const intent = row[2];
+                if (intent) {
+                    intentCounts[intent] = (intentCounts[intent] || 0) + 1;
+                    totalCount++;
+                }
+            });
+
+            const labels = Object.keys(intentCounts);
+            const data = Object.values(intentCounts);
+
+            if (myChart) myChart.destroy();
+
+            const ctx = document.getElementById('intentChart').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Questions',
+                        data: data,
+                        backgroundColor: [
+                            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#2ecc71', '#34495e'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    let value = context.parsed;
+                                    let percentage = Math.round((value / totalCount) * 100) + '%';
+                                    return ` ${label}: ${percentage} (${value} queries)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

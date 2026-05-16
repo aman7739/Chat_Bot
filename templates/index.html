@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Enquiry Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      <div>
+        College Enquiry Chatbot
+        <br>
+        <small>Ask about fees, courses, timings...</small>
+      </div>
+      
+      <div style="display: flex; gap: 15px; align-items: center;">
+        <!-- TTS Toggle -->
+        <div class="tts-toggle">
+          <input type="checkbox" id="tts-toggle">
+          <label for="tts-toggle" title="Enable Voice Replies">🔊</label>
+        </div>
+        
+        <!-- Language Toggle Switch -->
+        <div class="language-switch">
+          <label class="switch">
+            <input type="checkbox" id="lang-toggle">
+            <span class="slider">
+              <span class="lang-label en">EN</span>
+              <span class="lang-label hi">HI</span>
+            </span>
+          </label>
+        </div>
+        
+        <!-- History Button -->
+        <button id="history-btn" class="icon-btn" title="Chat History">📜</button>
+        
+        <!-- Admin Dashboard Link -->
+        <a href="/dashboard" target="_blank" style="text-decoration: none; font-size: 20px; cursor: pointer;" title="Open Admin Dashboard">
+          🎓
+        </a>
+      </div>
+    </div>
+
+    <!-- Chat History Sidebar -->
+    <div class="chat-history-sidebar" id="history-sidebar">
+      <div class="history-header">
+        <h3>Chat History</h3>
+        <button id="close-history" class="close-btn">✕</button>
+      </div>
+      <div class="history-list" id="history-list"></div>
+      <button id="clear-history" class="clear-history-btn">Clear All History</button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages"></div>
+
+    <div class="input-area">
+      <button id="voice-btn" class="voice-btn" title="Voice Input">🎤</button>
+      <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off" />
+      <button id="send-btn" type="button">Send</button>
+    </div>
+  </div>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>

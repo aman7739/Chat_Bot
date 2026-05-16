@@ -1,0 +1,491 @@
+text,label
+
+hlo,greeting
+Hlo,greeting
+Hello,greeting
+Hii,greeting
+Hiii,greeting
+hi,greeting
+hii,greeting
+hiii,greeting
+Hi,greeting
+Hey,greeting
+Good morning,greeting
+Good evening,greeting
+Namaste,greeting
+Namaskaar,greeting
+Namaskar,greeting
+Pranam,greeting
+Ram ram,greeting
+Hello sir,greeting
+Hello mam,greeting
+Jai hind,greeting
+Vanakkam,greeting
+Sat sri akal,greeting
+Assalamu alaikum,greeting
+Kaise ho,greeting
+How are you,greeting
+Kya haal hai,greeting
+Sup,greeting
+Yo,greeting
+Whatsup,greeting
+Hello there,greeting
+Greetings,greeting
+
+Thanks,thanks
+Thanku,thanks
+Thank you,thanks
+Thank you so much,thanks
+Ok thanks,thanks
+thik hai,thanks
+Thik h thank you,thanks
+Dhanyavaad,thanks
+Shukriya,thanks
+Thank u,thanks
+Thnx,thanks
+Thanx,thanks
+Bahut dhanyavaad,thanks
+Bahut shukriya,thanks
+Aapka bahut bahut dhanyavad,thanks
+Thanks a lot,thanks
+Thanks alot,thanks
+Many thanks,thanks
+Appreciate it,thanks
+Thank you very much,thanks
+
+Bye,goodbye
+Goodbye,goodbye
+See you,goodbye
+Ok bye,goodbye
+Fir milte hain,goodbye
+Alvida,goodbye
+Tata,goodbye
+See ya,goodbye
+Catch you later,goodbye
+Take care,goodbye
+Bye bye,goodbye
+Cya,goodbye
+See you soon,goodbye
+See you later,goodbye
+Chalo bye,goodbye
+Phir milenge,goodbye
+Baad mein baat karte hain,goodbye
+
+fees,fees
+fee,fees
+Fees?,fees
+What is the fee structure for B.Tech?,fees
+How much fee for engineering course?,fees
+Btech ka fee kitna hai?,fees
+College fees batao?,fees
+Annual fees,fees
+Yearly fees,fees
+Semester fees,fees
+Total fees,fees
+Fee structure,fees
+Fees details,fees
+Kitna fees hai,fees
+Kitna paisa lagega,fees
+Course fee,fees
+Engineering fees,fees
+Diploma fees,fees
+MCA fees,fees
+Tuition fees,fees
+College ka kharcha,fees
+Kharcha kitna aayega,fees
+Paise kitne lagenge,fees
+Full course fees,fees
+4 saal ka fees,fees
+Per year fees,fees
+Fees structure batao,fees
+Kitna dena padega,fees
+Admission fees,fees
+Registration fees,fees
+Kitne paise chahiye,fees
+Total cost,fees
+How much money,fees
+College expenses,fees
+Study cost,fees
+Padhne ka kharcha,fees
+Education cost,fees
+fees kitni hai,fees
+college ki fees batao,fees
+fees batao,fees
+kitna rupiya lagega,fees
+total fees kya hai,fees
+fees kam hogi kya,fees
+fees installments mein de sakte hain,fees
+
+course,courses
+courses?,courses
+course details,courses
+Tell me the available courses,courses
+What programs do you offer?,courses
+Kaun kaun se course available hain?,courses
+Courses list?,courses
+Course ?,courses
+Course,courses
+Available courses,courses
+Branches,courses
+Kya kya courses hain,courses
+Which courses,courses
+Course options,courses
+Streams available,courses
+What can I study,courses
+Degree programs,courses
+B Tech courses,courses
+Engineering branches,courses
+Diploma courses,courses
+Konse branch hain,courses
+CSE available hai,courses
+IT course hai kya,courses
+Mechanical engineering,courses
+Civil engineering,courses
+ECE hai kya,courses
+Computer science,courses
+MCA course,courses
+Postgraduate courses,courses
+UG courses,courses
+PG courses,courses
+konsa course best hai,courses
+konsi branch hai,courses
+kya kya padhate ho,courses
+list of courses,courses
+subject kaunse hain,courses
+
+timings,timings
+time table,timings
+What are college timings?,timings
+At what time college starts?,timings
+Time table of college,timings
+College timing,timings
+College ka time,timings
+Kitne baje college,timings
+Start time,timings
+End time,timings
+College kab khulta hai,timings
+College kab band hota hai,timings
+Classes timing,timings
+Lecture timing,timings
+College hours,timings
+Opening time,timings
+Closing time,timings
+Schedule,timings
+Daily schedule,timings
+Monday to Friday,timings
+Weekend classes,timings
+Saturday college hai kya,timings
+Sunday holiday hai kya,timings
+Working days,timings
+Class ka time,timings
+college kab aana hai,timings
+kab tak khula rehta hai,timings
+timing batao,timings
+class kab shuru hoti hai,timings
+what is the timing,timings
+
+What is the admission process?,admission
+admission,admission
+Admission process?,admission
+How to apply for college admission?,admission
+Admission kab start hota h?,admission
+How to get admission,admission
+Admission procedure,admission
+Apply kaise kare,admission
+Admission form,admission
+Online admission,admission
+Offline admission,admission
+Registration process,admission
+How to register,admission
+Admission kaise le,admission
+Kab hogi admission,admission
+Admission date,admission
+Last date,admission
+Form kab aayega,admission
+Apply online,admission
+Admission details,admission
+Entrance exam,admission
+JEE required hai kya,admission
+Direct admission,admission
+Management quota,admission
+Counselling,admission
+Seat booking,admission
+Document verification,admission
+Kya process hai,admission
+admission chahiye,admission
+admission kab shuru hoga,admission
+form kaise bhare,admission
+admission milega kya,admission
+process kya hai admission ka,admission
+seedha admission milega,admission
+
+hostel,hostel
+Hostel facility,hostel
+Hostel details,hostel
+Hostel fee,hostel
+Do you have hostel facility?,hostel
+Hostel available?,hostel
+Hostel fee batao?,hostel
+Hostel hai kya,hostel
+Boys hostel,hostel
+Girls hostel,hostel
+Hostel charges,hostel
+Mess fee,hostel
+Room sharing,hostel
+Single room,hostel
+Double sharing,hostel
+Triple sharing,hostel
+Hostel facilities,hostel
+Hostel mein kya milta hai,hostel
+Hostel food,hostel
+Mess ka khana,hostel
+Warden,hostel
+Hostel rules,hostel
+AC room,hostel
+Non AC room,hostel
+Hostel accommodation,hostel
+Hostel booking,hostel
+Hostel ki jankari,hostel
+hostel milega,hostel
+rehne ki suvidha,hostel
+pg available hai,hostel
+mess ka khana kaisa hai,hostel
+hostel fees kitni hai,hostel
+
+Transport,transport
+Transport facility,transport
+Transport details,transport
+What is the transport fee?,transport
+What is the transport facility?,transport
+Do you provide transport?,transport
+Transport facility details?,transport
+transport?,transport
+What is the bus fee?,transport
+Bus facility,transport
+College bus,transport
+Bus routes,transport
+Bus pass,transport
+Bus charges,transport
+Bus ka kharcha,transport
+Bus hai kya,transport
+Bus timings,transport
+Bus stops,transport
+Pick up points,transport
+Drop points,transport
+Bus schedule,transport
+Monthly bus fee,transport
+Yearly bus fee,transport
+Transport available,transport
+Kitne routes hain,transport
+Kahan se bus aati hai,transport
+bus aati hai kya,transport
+bus ki suvidha,transport
+transportation charge,transport
+bus kahan se milegi,transport
+
+placement,placement
+placement details,placement
+placement record,placement
+What is the placement record?,placement
+What are the placement details?,placement
+What is the highest package?,placement
+Highest package?,placement
+Placement stats,placement
+Average package,placement
+Placement percentage,placement
+Job opportunities,placement
+Campus placement,placement
+Companies aati hain,placement
+Kaun kaun si companies,placement
+Placement cell,placement
+Training and placement,placement
+Internship,placement
+Job guarantee,placement
+Package details,placement
+Starting salary,placement
+Fresher salary,placement
+Lowest package,placement
+Top recruiters,placement
+MNC placement,placement
+IT companies,placement
+Core companies,placement
+Off campus,placement
+placement kaisa hai,placement
+job milegi kya,placement
+package kitna milta hai,placement
+highest placement kya hai,placement
+company aati hai,placement
+
+Is scholarship available?,scholarship
+Scholarship details?,scholarship
+Scholarship,scholarship
+Financial aid,scholarship
+Scholarship hai kya,scholarship
+Konsi scholarship,scholarship
+Merit scholarship,scholarship
+SC ST scholarship,scholarship
+OBC scholarship,scholarship
+EWS scholarship,scholarship
+Minority scholarship,scholarship
+Girl child scholarship,scholarship
+Need based scholarship,scholarship
+Government scholarship,scholarship
+College scholarship,scholarship
+Fee waiver,scholarship
+Free education,scholarship
+Scholarship eligibility,scholarship
+How to apply scholarship,scholarship
+Scholarship criteria,scholarship
+Percentage required,scholarship
+scholarship milegi kya,scholarship
+sc st ke liye scholarship,scholarship
+fee kam ho jayegi kya,scholarship
+
+exams,exams
+Exam dates,exams
+Exam schedule,exams
+What are the exam dates?,exams
+When is the exam?,exams
+When is the next exam?,exams
+Exam dates?,exams
+Mid sem kab hai?,exams
+End sem exam,exams
+Internal exam,exams
+External exam,exams
+Practical exam,exams
+Theory exam,exams
+Viva,exams
+Exam time table,exams
+Exam pattern,exams
+Exam syllabus,exams
+How many exams,exams
+Semester exam,exams
+Unit test,exams
+Assessment,exams
+Exam kab hogi,exams
+Pareeksha kab hai,exams
+exam kab start honge,exams
+paper kab hai,exams
+exam form kab bharna hai,exams
+
+College phone number?,contact
+phone number,contact
+Contact number?,contact
+Contact details?,contact
+Contact number,contact
+College helpline number?,contact
+College contact number?,contact
+College contact details?,contact
+College contact?,contact
+Helpline number?,contact
+Call karna hai,contact
+Number do,contact
+Phone number kya hai,contact
+Email id,contact
+College email,contact
+Website,contact
+Address,contact
+How to contact,contact
+Kaise contact kare,contact
+Customer care,contact
+Support,contact
+Enquiry number,contact
+Admission helpline,contact
+baat karni hai,contact
+call kaise kare,contact
+number bhejo,contact
+
+location,location
+College address?,location
+Location,location
+College kahan hai?,location
+Address,location
+College address?,location
+Where is college,location
+College location,location
+Kahan par hai,location
+College ka address,location
+City,location
+State,location
+Pin code,location
+Landmark,location
+Nearby location,location
+How to reach,location
+Map,location
+Google map,location
+Directions,location
+Distance from station,location
+Distance from airport,location
+Bus stand se kitni door,location
+Railway station se distance,location
+college kidhar hai,location
+rasta batao,location
+google map link,location
+location kya hai,location
+
+Faculty details?,faculty
+Teachers experience?,faculty
+Faculty details?,faculty
+Faculty information?,faculty
+Tell me about the faculty?,faculty
+Teachers,faculty
+Professors,faculty
+Staff details,faculty
+Faculty qualification,faculty
+PhD professors,faculty
+Experienced teachers,faculty
+Faculty ratio,faculty
+Student teacher ratio,faculty
+Kitne teachers hain,faculty
+Teachers kaisa hain,faculty
+Faculty quality,faculty
+Department faculty,faculty
+HOD,faculty
+Principal,faculty
+padhai kaisi hoti hai,faculty
+teachers kaise hain,faculty
+faculty achi hai kya,faculty
+
+Result portal?,result
+Marksheet download?,result
+Result,result
+Result kab aayega,result
+Marks kaise dekhe,result
+Result website,result
+Result portal,result
+Online result,result
+How to check result,result
+Marksheet,result
+Grade sheet,result
+Transcript,result
+Semester result,result
+Final result,result
+result link,result
+marks dekhne hain,result
+result show nahi ho raha,result
+
+What documents are required for admission?,documents
+Documents required for admission?,documents
+What documents are needed for admission?,documents
+What documents are required?,documents
+What documents are needed?,documents
+Documents needed for admission?,documents
+What documents required?,documents
+Kya kya documents chahiye,documents
+Documents list,documents
+Required documents,documents
+Admission documents,documents
+10th marksheet,documents
+12th marksheet,documents
+Transfer certificate,documents
+Migration certificate,documents
+Aadhar card,documents
+Photos,documents
+Character certificate,documents
+Caste certificate,documents
+Income certificate,documents
+Documents verification,documents
+Kya laana padega,documents
+kagaz kya lagenge,documents
+documents batao,documents
+id proof chahiye,documents
