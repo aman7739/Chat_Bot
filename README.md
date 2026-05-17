@@ -1,5 +1,4 @@
-# Folder mein README.md create kar
-cat > README.md << 'EOF'
+
 # College Enquiry Chatbot
 
 A Flask-based chatbot that answers college-related inquiries using machine learning.
@@ -27,8 +26,3 @@ A Flask-based chatbot that answers college-related inquiries using machine learn
 - `model.pkl` - Trained ML model
 - `vectorizer.pkl` - TF-IDF vectorizer
 
-EOF
-
-git add README.md
-git commit -m "Add README documentation"
-git push
